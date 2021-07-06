@@ -8,8 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>CreatedAt</th>
                 <th>Cote</th>
                 <th>Titre</th>
                 <th>Analyse</th>
@@ -21,8 +19,6 @@
         <tbody>
         {% for dossier in dossiers %}
             <tr>
-                <td>{{ dossier.id }}</td>
-                <td>{{ dossier.createdAt ? dossier.createdAt|date('Y-m-d') : '' }}</td>
                 <td>{{ dossier.cote }}</td>
                 <td>{{ dossier.titre }}</td>
                 <td>{{ dossier.analyse }}</td>

@@ -12,7 +12,6 @@ class Dossier1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt')
             ->add('cote')
             ->add('titre')
             ->add('analyse')
