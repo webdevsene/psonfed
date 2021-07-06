@@ -65,6 +65,7 @@ security:
     access_control:
         # this is a catch-all for the admin area
         # additional security lives in the controllers
+        - { path: '^/gedpsonfed', roles: ROLE_USER }
         - { path: '^/(%app_locales%)/admin', roles: ROLE_ADMIN }
 
     role_hierarchy:

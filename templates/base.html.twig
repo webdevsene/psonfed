@@ -8,7 +8,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>{% block title %}Symfony Demo application{% endblock %}</title>
+        <title>{% block title %}GED PSON FED{% endblock %}</title>
         <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -25,7 +25,7 @@
                     <div class="container">
                         <div class="navbar-header col-md-3 col-lg-2">
                             <a class="navbar-brand" href="{{ path('homepage') }}">
-                                Symfony Demo
+                                SET Demarch logo
                             </a>
 
                             <button type="button" class="navbar-toggle"
@@ -41,13 +41,28 @@
                             <ul class="nav navbar-nav navbar-right">
 
                                 {% block header_navigation_links %}
+                                    
+
                                     <li>
                                         <a href="{{ path('blog_index') }}">
                                             <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
                                         </a>
                                     </li>
+                                    
+                                    {% if app.user %}
+                                          <!-- commentaire ici on ajoute au menu liste des dossiers dynamique
+                                    connection en tant que admin -->
+                                    <li>
+                                        <a href="{{ path('dossier_index') }}">
+                                            <i class="fa fa-folder-open" aria-hidden="true"></i> {{ 'Liste des dossiers'|trans }}
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                    
+                                 
 
                                     {% if is_granted('ROLE_ADMIN') %}
+
                                         <li>
                                             <a href="{{ path('admin_post_index') }}">
                                                 <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
@@ -61,6 +76,8 @@
                                 </li>
 
                                 {% if app.user %}
+                                        
+                                  
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
                                             <i class="fa fa-user" aria-hidden="true"></i>

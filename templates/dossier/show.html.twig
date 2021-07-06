@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dossier{% endblock %}
+
+{% block body %}
+    <h1>Dossier</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dossier.id }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ dossier.createdAt ? dossier.createdAt|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cote</th>
+                <td>{{ dossier.cote }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ dossier.titre }}</td>
+            </tr>
+            <tr>
+                <th>Analyse</th>
+                <td>{{ dossier.analyse }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{{ dossier.dateDebut ? dossier.dateDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_butoire</th>
+                <td>{{ dossier.dateButoire ? dossier.dateButoire|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('dossier_index') }}">back to list</a>
+
+    <a href="{{ path('dossier_edit', {'id': dossier.id}) }}">edit</a>
+
+    {{ include('dossier/_delete_form.html.twig') }}
+{% endblock %}

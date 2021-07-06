@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dossier index{% endblock %}
+
+{% block body %}
+    <h1>Dossier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>Cote</th>
+                <th>Titre</th>
+                <th>Analyse</th>
+                <th>Date_debut</th>
+                <th>Date_butoire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dossier in dossiers %}
+            <tr>
+                <td>{{ dossier.id }}</td>
+                <td>{{ dossier.createdAt ? dossier.createdAt|date('Y-m-d') : '' }}</td>
+                <td>{{ dossier.cote }}</td>
+                <td>{{ dossier.titre }}</td>
+                <td>{{ dossier.analyse }}</td>
+                <td>{{ dossier.dateDebut ? dossier.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ dossier.dateButoire ? dossier.dateButoire|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('dossier_show', {'id': dossier.id}) }}">show</a>
+                    <a href="{{ path('dossier_edit', {'id': dossier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('dossier_new') }}">Create new</a>
+{% endblock %}
