@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Dossier;
+use App\Entity\User;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -23,12 +24,13 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('PSONFED');
+            ->setTitle('<img src="..."> PSON<span class="text-small">fed.</span>');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Dossiers', 'fa fa-folder-open', Dossier::class);
+        # yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class); must create crud User before
     }
 }
