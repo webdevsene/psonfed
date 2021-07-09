@@ -15,7 +15,7 @@
     {% endif %}
 
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-12">
             <div class="well">
                 <form action="{{ path('security_login') }}" method="post">
                     <fieldset>
@@ -38,6 +38,7 @@
             </div>
         </div>
 
+{# 
         <div id="login-help" class="col-sm-7">
             <h3>
                 <i class="hidden-xs fa fa-long-arrow-left" aria-hidden="true"></i>
@@ -83,12 +84,12 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> #}
     </div>
 {% endblock %}
 
-{% block sidebar %}
+{# {% block sidebar %}
     {{ parent() }}
 
     {{ show_source_code(_self) }}
-{% endblock %}
+{% endblock %} #}

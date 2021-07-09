@@ -11,15 +11,14 @@
 
 namespace App\Controller;
 
-use App\Form\Type\ChangePasswordType;
 use App\Form\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\Type\ChangePasswordType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 /**
  * Controller used to manage current user.
  *
@@ -30,6 +29,25 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserController extends AbstractController
 {
+    /**
+     * @var UserPasswordHasherInterface
+     */
+    ///private $passwordEncoder;
+
+    public function __construct(UserPasswordHasherInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
+    public function persistUserEntity($user): void
+    {
+        // Avec FOSUserBundle, on faisait comme ça :
+        // $this->get('fos_user.user_manager')->updateUser($user, false);
+        //$this->updatePassword($user);
+        //parent::persistEntity($user);
+    }
+
+
     /**
      * @Route("/edit", methods="GET|POST", name="user_edit")
      */

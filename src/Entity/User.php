@@ -79,6 +79,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $roles = [];
 
+    /**
+     * @var string
+     */
+    private $plainPassword;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,9 +104,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->username;
     }
 
-    public function getUsername(): string
+     public function getUsername(): string
     {
-        return $this->getUserIdentifier();
+        # return $this->getUserIdentifier();
+        return $this->username;
+
     }
 
     public function setUsername(string $username): void
@@ -147,6 +154,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
+    }
+
+     /**
+     * @return string
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     * @return User
+     */
+    public function setPlainPassword(string $plainPassword): User
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
     }
 
     /**
