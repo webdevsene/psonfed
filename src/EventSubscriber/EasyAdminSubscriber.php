@@ -35,6 +35,8 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             return;
         }
 
+        //possibilité de tester sur l'instanceof User
+
         /*$slug = $this->slugger->slugify($entity->getTitle());
         $entity->setSlug($slug); */
 
@@ -44,5 +46,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         #$dossier = $this->dossier->getCreatedAt(); 
         #$entity->setCreatedAt($dossier);
     }
+
+    /**
+     * on souhaite definir dans ce qui suit une methode 
+     * pour hasher le mot_de_pass de l'utilisateur avant/après persistance en BD
+     */
+    public function setUserPasswordAndHash(){}
 }
 ?>

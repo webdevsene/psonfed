@@ -24,6 +24,7 @@ class UserAdminController extends EasyAdminController
     {
         // Avec FOSUserBundle, on faisait comme ça :
         // $this->get('fos_user.user_manager')->updateUser($user, false);
+        // mais maintenant on fait ceci
         $this->updatePassword($user);
         parent::persistEntity($user);
     }
