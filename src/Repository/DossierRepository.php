@@ -19,6 +19,32 @@ class DossierRepository extends ServiceEntityRepository
         parent::__construct($registry, Dossier::class);
     }
 
+    /**
+     * Recherche les dossiers sur liste en fonction du formulaire
+     *
+     * @return void
+     */
+    public function search($mots)
+    {
+        #$query->where('d.active = 1');
+        $query = $this->createQueryBuilder('d')
+                      ->andWhere('MATCH_AGAINST(d.titre, d.analyse) AGAINST(:mots boolean)>0')
+                      ->setParameter('mots', $mots)
+        ;
+
+       /*  if ($mots != null) {
+
+            $query->andWhere('MATCH_AGAINST(d.titre, d.analyse) AGAINST
+            (:mots boolean)>0')
+                ->setParameters('mots', $mots)
+            ;
+        } */
+
+        return $query->getQuery()
+                     ->getResult();
+
+    }
+
     // /**
     //  * @return Dossier[] Returns an array of Dossier objects
     //  */

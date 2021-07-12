@@ -25,7 +25,7 @@
                     <div class="container">
                         <div class="navbar-header col-md-3 col-lg-2">
                             <a class="navbar-brand" href="{{ path('homepage') }}">
-                                SET Demarch logo
+                                PSON
                             </a>
 
                             <button type="button" class="navbar-toggle"
@@ -44,12 +44,12 @@
                                     
 
                                     <li>
-                                        <a href="{{ path('blog_index') }}">
+                                        <a href="{{ path('homepage') }}">
                                             <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
                                         </a>
                                     </li>
                                     
-                                    {% if app.user %}
+                                    {% if is_granted('ROLE_ADMIN') %}
                                           <!-- commentaire ici on ajoute au menu liste des dossiers dynamique
                                     connection en tant que admin -->
                                     <li>
@@ -146,8 +146,9 @@
                 <div class="container">
                     <div class="row">
                         <div id="footer-copyright" class="col-md-6">
-                            <p>&copy; {{ 'now'|date('Y') }} - The Symfony Project</p>
-                            <p>{{ 'mit_license'|trans }}</p>
+                            <p>&copy; {{ 'now'|date('Y') }} - Tous droits réservés</p>
+                            {#<p>{{ 'mit_license'|trans }}</p>#}
+                            <p> {{ '| propulsé par DEMARCH' |trans}} </p>
                         </div>
                         <div id="footer-resources" class="col-md-6">
                             <p>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Dossier;
 use App\Form\Dossier1Type;
+use App\Form\SearchDossierType;
 use App\Repository\DossierRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +17,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class DossierController extends AbstractController
 {
     /**
-     * @Route("/", name="dossier_index", methods={"GET"})
+     * @Route("/", name="dossier_index", methods={"GET", "POST"})
      */
-    public function index(DossierRepository $dossierRepository): Response
+    public function index(DossierRepository $dossierRepository, Request $request): Response
     {
+
+        #$dossier = $dossierRepository->findBy(['active' => true], ['created_at' => "desc"], 10);
+        $dossier = $dossierRepository->findAll();
+
+        $form = $this->createForm(SearchDossierType::class);
+
+        $search = $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            # code... recherche les dossiers correspondant aux mots clés
+            $dossier = $dossierRepository->search($search->get('mots')->getData());
+        }
+
         return $this->render('dossier/index.html.twig', [
-            'dossiers' => $dossierRepository->findAll(),
+            'dossiers' => $dossier,
+            'form' => $form->createView()
         ]);
     }
 

@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 /**
  * Controller used to manage current user.
@@ -27,8 +28,10 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
-class UserController extends AbstractController
+class UserController extends EasyAdminController
 {
+
+    //use AbstractController;
     /**
      * @var UserPasswordHasherInterface
      */
@@ -43,8 +46,14 @@ class UserController extends AbstractController
     {
         // Avec FOSUserBundle, on faisait comme ça :
         // $this->get('fos_user.user_manager')->updateUser($user, false);
-        //$this->updatePassword($user);
-        //parent::persistEntity($user);
+        $this->updatePassword($user);
+
+        $role = ['ROLE_MANAGER' => 'ROLE_MANAGER'];
+        $user->setRoles($role);
+
+        // on essaye de persister ici le mot de pass
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $user->getPlainPassword()));
+        parent::persistEntity($user);
     }
 
 
@@ -54,6 +63,9 @@ class UserController extends AbstractController
     public function edit(Request $request): Response
     {
         $user = $this->getUser();
+
+        $role [] = ['ROLE_MANAGER'];
+        $user->setRoles($role);
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);

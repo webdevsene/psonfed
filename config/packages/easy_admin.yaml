@@ -5,14 +5,25 @@ easy_admin:
             class: App\Entity\User
             # Notre controller spécifique
             controller: App\Controller\Admin\User\UserAdminController
+
+            list:
+               fields:
+                   - username
+                   - fullname
+                   - email
+                   - password
+                   - roles
+                   
             form:
                 fields:
-                    - fullname
                     - username
+                    - fullname
                     # Fomulaire de création / modification d'un utilisateur
                     - { property: 'email'}
+                    - { property: 'password'}
+                    - roles
                     # Ici on retrouve notre propriété plainPassword pour la modification du mot de passe 
-                    - { property: 'plainPassword', type: 'password', type_options: { required: false }}
+                    # - { property: 'plainPassword', type: 'password', type_options: { required: false }}
                     # if administrators are allowed to edit users' passwords and roles, add this:
-                    - { property: 'plainPassword', type: 'text', type_options: { required: false } }
+                    - { property: 'plainPassword', type: 'password', type_options: { required: false } }
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }

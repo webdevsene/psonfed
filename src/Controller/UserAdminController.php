@@ -8,7 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use App\Entity\User;
 
-class UserAdminController extends EasyAdminController
+class UserAdminController extends EasyAdminController //AbstractController
 {
     /**
      * @var UserPasswordHasherInterface
@@ -26,6 +26,11 @@ class UserAdminController extends EasyAdminController
         // $this->get('fos_user.user_manager')->updateUser($user, false);
         // mais maintenant on fait ceci
         $this->updatePassword($user);
+        $role [] = ["ROLE_MANAGER"];
+        $user->setRoles($role);
+        
+        // on essaye de persister ici le mot de pass
+        $user->setPassword($this->passwordEncoder->hashPassword($user, $user->getPlainPassword()));
         parent::persistEntity($user);
     }
 
@@ -33,6 +38,8 @@ class UserAdminController extends EasyAdminController
     {
         // Avec FOSUserBundle, on faisait comme ça :
         //$this->get('fos_user.user_manager')->updateUser($user, false);
+        $role [] = ['ROLE_MANAGER'];
+        $user->setRoles($role);
         $this->updatePassword($user);
         parent::updateEntity($user);
     }

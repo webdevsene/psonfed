@@ -33,6 +33,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Dossiers', 'fa fa-folder-open', Dossier::class);
         # yield MenuItem::linkToCrud('UtilisateursCorrup', 'fa fa-user', Utilisateur::class); #must create crud User before
-        yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class)->setPermission('ROLE_ADMIN');
     }
 }

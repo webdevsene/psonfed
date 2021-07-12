@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=DossierRepository::class)
+ * @ORM\Table(name="dossier", indexes={@ORM\Index(columns={"titre", "analyse"}, flags={"fulltext"})})
  */
 class Dossier
 {

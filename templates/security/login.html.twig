@@ -20,13 +20,13 @@
             <div class="well">
                 <form action="{{ path('security_login') }}" method="post">
                     <fieldset>
-                        <legend><i class="fa fa-lock" aria-hidden="true"></i> {{ 'title.login'|trans }}</legend>
+                        <h2 align="center"><i class="fa fa-lock" aria-hidden="true"></i> {{ 'title.login'|trans }}</h2>
                         <div class="form-group">
-                            <label for="username">{{ 'label.username'|trans }}</label>
+                            <label for="username"><span class="mr-2 icon-user"></span>{{ 'label.username'|trans }}</label>
                             <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="password">{{ 'label.password'|trans }}</label>
+                            <label for="password"><span class="mr-2 icon-lock"></span>{{ 'label.password'|trans }}</label>
                             <input type="password" id="password" name="_password" class="form-control" />
                         </div>
                         <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>

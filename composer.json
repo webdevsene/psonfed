@@ -16,6 +16,7 @@
         "doctrine/orm": "^2.6",
         "easycorp/easyadmin-bundle": "^3.4",
         "erusev/parsedown": "^1.6",
+        "friendsofsymfony/elastica-bundle": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^5.3",

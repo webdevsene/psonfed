@@ -3,19 +3,26 @@
 # src/EventSubscriber/EasyAdminSubscriber.php
 namespace App\EventSubscriber;
 
-use App\Entity\Dossier;
 use DateTime;
-use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
+use App\Entity\User;
+use App\Entity\Dossier;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\String\Slugger\SluggerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
     # private $slugger;
     #private $dossier;
 
-    public function __construct()
+    /**
+     * @var UserPasswordHasherInterface
+     */
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordHasherInterface $passwordEncoder)
     {
+        $this->passwordEncoder = $passwordEncoder;
         # $this->slugger = $slugger;
         #$this->dossier = $dossier;
     }
@@ -24,6 +31,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         return [
             BeforeEntityPersistedEvent::class => ['setDossierSlugAndDateAndUser'],
+            BeforeEntityPersistedEvent::class => ['setUserPasswordAndRolesHasher']
         ];
     }
 
@@ -51,6 +59,23 @@ class EasyAdminSubscriber implements EventSubscriberInterface
      * on souhaite definir dans ce qui suit une methode 
      * pour hasher le mot_de_pass de l'utilisateur avant/après persistance en BD
      */
-    public function setUserPasswordAndHash(){}
+    public function setUserPasswordAndRolesHasher(BeforeEntityPersistedEvent $event){
+
+        $entity_user = $event->getEntityInstance();
+
+        if (!($entity_user instanceof User)) {
+            return;
+        }
+
+        #$plainPassword = $entity_user->getPlainPassword();
+        // on recuper le plainPassword dans le vrai password
+        $entity_user->setPassword($this->passwordEncoder->hashPassword($entity_user, $entity_user->getPlainPassword()));
+        $entity_user->setPassword($entity_user->getPlainPassword());
+
+        // persister une role utilisateur
+        $role [] = ['ROLE_MANAGER'];
+        $entity_user->setRoles($entity_user->getRoles());
+
+    }
 }
 ?>
