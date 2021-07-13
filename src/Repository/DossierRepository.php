@@ -25,20 +25,21 @@ class DossierRepository extends ServiceEntityRepository
      * @return void
      */
     public function search($mots)
-    {
-        #$query->where('d.active = 1');
-        $query = $this->createQueryBuilder('d')
-                      ->andWhere('MATCH_AGAINST(d.titre, d.analyse) AGAINST(:mots boolean)>0')
-                      ->setParameter('mots', $mots)
-        ;
-
-       /*  if ($mots != null) {
-
-            $query->andWhere('MATCH_AGAINST(d.titre, d.analyse) AGAINST
+    {        
+        $query = null;
+        if ($mots != null) {
+            
+            #$query->where('d.active = 1');
+            
+            $query = $this->createQueryBuilder('d')
+                          ->andWhere('MATCH_AGAINST(d.titre, d.analyse) AGAINST(:mots boolean)>0')
+                          ->setParameter('mots', $mots)
+            ;
+            /* $query->andWhere('MATCH_AGAINST(d.titre, d.analyse) AGAINST
             (:mots boolean)>0')
                 ->setParameters('mots', $mots)
-            ;
-        } */
+            ; */
+        }
 
         return $query->getQuery()
                      ->getResult();

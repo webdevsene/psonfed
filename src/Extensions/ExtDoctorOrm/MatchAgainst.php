@@ -8,6 +8,8 @@ use Doctrine\ORM\Query\Lexer;
 
 class MatchAgainst extends FunctionNode
 {
+    /**insert here resources for more sf extensions  link */
+    
     /** @var array list of \Doctrine\ORM\Query\AST\PathExpression */
     protected $pathExp = null;
 

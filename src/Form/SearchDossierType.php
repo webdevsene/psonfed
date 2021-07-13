@@ -17,9 +17,9 @@ class SearchDossierType extends AbstractType
                 'label' =>  false,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Entrer un ou pluieurs mots-clés',
-                    'required' => false
-                ]
+                    'placeholder' => 'Entrer un ou pluieurs mots-clés'
+                ],
+                'required' => true
             ])
             ->add('Rechercher', SubmitType::class, [
                 'attr' => [
