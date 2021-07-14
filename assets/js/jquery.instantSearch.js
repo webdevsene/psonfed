@@ -20,7 +20,8 @@
         this.$input = $(element);
         this.$form = this.$input.closest('form');
         this.$preview = $('<ul class="search-preview list-group">').appendTo(this.$form);
-        this.options = $.extend({}, InstantSearch.DEFAULTS, this.$input.data(), options);
+/*      this.$preview = $('<ul class="doss-preview list-group">').appendTo(this.$form);
+ */     this.options = $.extend({}, InstantSearch.DEFAULTS, this.$input.data(), options);
 
         this.$input.keyup(this.debounce());
     };
@@ -32,12 +33,13 @@
         noResultsMessage: 'No results found',
         itemTemplate: '\
                 <article class="post">\
-                    <h2><a href="{{ url }}">{{ title }}</a></h2>\
+                    <h2><a href="{{ url }}">{{ titre }}</a></h2>\
                     <p class="post-metadata">\
-                       <span class="metadata"><i class="fa fa-calendar"></i> {{ date }}</span>\
-                       <span class="metadata"><i class="fa fa-user"></i> {{ author }}</span>\
+                       <span class="metadata"><i class="fa fa-calendar"></i> {{ date_debut }}</span>\
+                       <span class="metadata"><i class="fa fa-calendar"></i> {{ date_butoire }}</span>\
                     </p>\
-                    <p>{{ summary }}</p>\
+                    <p>{{ analyse }}</p>\
+                    <h3>{{ cote }}</h3>\
                 </article>'
     };
 

@@ -106,4 +106,39 @@ class DossierController extends AbstractController
 
         return $this->redirectToRoute('dossier_index');
     }
+
+    /**
+     * @Route("/search", methods={"GET"}, name="doss_search")
+     */
+     public function search(Request $request, DossierRepository $doss): Response
+     {
+         $query = $request->query->get('d', '');
+         $limit = $request->query->get('l', 10);
+
+         if (!$request->isXmlHttpRequest()) {
+             return $this->render('dossier/search.html.twig', ['query' => $query]);
+        }
+
+         $foundDoss = $doss->findBySearchQuery($query, $limit);
+
+         $results = [];
+         foreach ($foundDoss as $ddoss) {
+
+             $results[] = [
+                 'cote' => htmlspecialchars($ddoss->getCote(), \ENT_COMPAT | \ENT_HTML5),
+                 'titre' => htmlspecialchars($ddoss->getTitre(), \ENT_COMPAT | \ENT_HTML5),
+                 'analyse' => htmlspecialchars($ddoss->getAnalyse(), \ENT_COMPAT | \ENT_HTML5),
+                 'date_debut' => $ddoss->getDateDebut()->format('M d, Y'),
+                 'date_butoire' => $ddoss->getDateButoire()->format('M d, Y'),
+                 #'author' => htmlspecialchars($post->getAuthor()->getFullName(), \ENT_COMPAT | \ENT_HTML5),
+                 #'summary' => htmlspecialchars($post->getSummary(), \ENT_COMPAT | \ENT_HTML5),
+                 #'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
+             ];
+        }
+
+         dump($results);
+
+         return $this->json($results);
+     }
+
 }

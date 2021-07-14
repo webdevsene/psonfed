@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Dossier;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use function Symfony\Component\String\u;
 
 /**
  * @method Dossier|null find($id, $lockMode = null, $lockVersion = null)
@@ -45,6 +47,70 @@ class DossierRepository extends ServiceEntityRepository
                      ->getResult();
 
     }
+
+    /* public function findLatest(int $page = 1, Tag $tag = null): Paginator
+    {
+        $qb = $this->createQueryBuilder('d')
+            ->addSelect('a', 't')
+            ->innerJoin('d.author', 'a')
+            ->leftJoin('p.tags', 't')
+            ->where('p.publishedAt <= :now')
+            ->orderBy('p.publishedAt', 'DESC')
+            ->setParameter('now', new \DateTime())
+        ;
+
+        if (null !== $tag) {
+            $qb->andWhere(':tag MEMBER OF p.tags')
+                ->setParameter('tag', $tag);
+        }
+
+        return (new Paginator($qb))->paginate($page);
+    } */
+
+    /**
+     * @return Dossier[]
+     */
+     public function findBySearchQuery(string $query, int $limit = Paginator::PAGE_SIZE): array
+     {
+         $page = 1;
+         $searchTerms = $this->extractSearchTerms($query);
+
+         if (0 === \count($searchTerms)) {
+             return [];
+         }
+
+         $queryBuilder = $this->createQueryBuilder('d');
+
+         foreach ($searchTerms as $key => $term) {
+             $queryBuilder
+                 ->orWhere('d.titre LIKE :t_'.$key)
+                 ->setParameter('t_'.$key, '%'.$term.'%')
+             ;
+    }
+        
+         return $queryBuilder->orderBy('d.date_butoire', 'DESC')
+                             ->setMaxResults($limit)
+                             ->getQuery()
+                             ->getResult()
+         ;
+
+         # return (new Paginator($qb))->paginate($page);
+    }
+
+    /**
+     * Transforms the search string into an array of search terms.
+     */
+     private function extractSearchTerms(string $searchQuery): array
+     {
+         $searchQuery = u($searchQuery)->replaceMatches('/[[:space:]]+/', ' ')->trim();
+         $terms = array_unique($searchQuery->split(' '));
+
+         // ignore the search terms that are too short
+         return array_filter($terms, function ($term) {
+             return 2 <= $term->length();
+         });
+     }
+
 
     // /**
     //  * @return Dossier[] Returns an array of Dossier objects

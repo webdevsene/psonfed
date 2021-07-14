@@ -10,3 +10,7 @@ homepage:
     defaults:
         template: default/homepage.html.twig
         _locale: '%locale%'
+
+doss_search:
+    path: /dossier/search
+    controller: App\Controller\DossierController::search

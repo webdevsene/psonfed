@@ -71,9 +71,14 @@
                                     {% endif %}
                                 {% endblock %}
 
-                                <li>
-                                    <a href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>
-                                </li>
+                                {% if app.user %}
+
+                                        <li>
+                                            {#<a href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>#}
+                                            <a href="{{ path('doss_search') }}"> <i class="fa fa-search"></i> {{ 'Advanced Search'|trans }}</a>
+                                        </li>
+                                
+                                {% endif %}
 
                                 {% if app.user %}
                                         
