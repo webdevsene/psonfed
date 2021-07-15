@@ -129,8 +129,8 @@ class DossierRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Dossier
+    
+   /*  public function findOneByTitre($value): ?Dossier
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.exampleField = :val')
@@ -138,6 +138,5 @@ class DossierRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
-    }
-    */
+    } */
 }

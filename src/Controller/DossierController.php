@@ -6,10 +6,11 @@ use App\Entity\Dossier;
 use App\Form\Dossier1Type;
 use App\Form\SearchDossierType;
 use App\Repository\DossierRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/dossier")
@@ -108,37 +109,14 @@ class DossierController extends AbstractController
     }
 
     /**
-     * @Route("/search", methods={"GET"}, name="doss_search")
+     * Search action method for Live earch feature.
+     * @Route("/search", name="doss_search")
      */
-     public function search(Request $request, DossierRepository $doss): Response
-     {
-         $query = $request->query->get('d', '');
-         $limit = $request->query->get('l', 10);
-
-         if (!$request->isXmlHttpRequest()) {
-             return $this->render('dossier/search.html.twig', ['query' => $query]);
-        }
-
-         $foundDoss = $doss->findBySearchQuery($query, $limit);
-
-         $results = [];
-         foreach ($foundDoss as $ddoss) {
-
-             $results[] = [
-                 'cote' => htmlspecialchars($ddoss->getCote(), \ENT_COMPAT | \ENT_HTML5),
-                 'titre' => htmlspecialchars($ddoss->getTitre(), \ENT_COMPAT | \ENT_HTML5),
-                 'analyse' => htmlspecialchars($ddoss->getAnalyse(), \ENT_COMPAT | \ENT_HTML5),
-                 'date_debut' => $ddoss->getDateDebut()->format('M d, Y'),
-                 'date_butoire' => $ddoss->getDateButoire()->format('M d, Y'),
-                 #'author' => htmlspecialchars($post->getAuthor()->getFullName(), \ENT_COMPAT | \ENT_HTML5),
-                 #'summary' => htmlspecialchars($post->getSummary(), \ENT_COMPAT | \ENT_HTML5),
-                 #'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
-             ];
-        }
-
-         dump($results);
-
-         return $this->json($results);
-     }
+    public function search(Request $request): Response
+    {
+        return $this->render('dossier/search.html.twig', [
+            'cle' => "vaaleur test recherche dynamique"
+        ]);
+    } 
 
 }

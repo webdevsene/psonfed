@@ -1,0 +1,9 @@
+{% if results is defined and results is iterable and results|length >= 1 %}
+    {% for result in results %}
+        <p style="display:inline-block;width:200px;">{{ result.cote }}</p>
+        <p style="display:inline-block;width:100px;">{{ result.titre }}</p>
+        <p style="display:inline-block;width:300px;">{{ result.analyse }}</p>
+        <p style="display:inline-block;width:120px;">{{ result.date_debut }}</p>
+        <p style="display:inline-block;width:120px;">{{ result.date_butoire }}</p>
+    {% endfor %}
+{% endif %}

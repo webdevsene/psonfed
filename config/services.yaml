@@ -34,6 +34,12 @@ services:
     App\EventSubscriber\CommentNotificationSubscriber:
         $sender: '%app.notifications.email_sender%'
 
+    #App\Controller\DossierController:
+    #    tags: ['controller.service_arguments']
+    #    autowire: true
+    #    arguments:
+    #        $search: '@string'
+
 when@test:
     services:
         test.user_password_hasher:

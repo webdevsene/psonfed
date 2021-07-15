@@ -10,6 +10,14 @@
 {# {% block header %}{% endblock %}
    {% block footer %}{% endblock %} #}
 
+   
+{% block body_id 'login' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('login') }}
+{% endblock %}
+
 {% block body %}
 {#     <div class="page-header">
         <h1>{{ 'title.homepage'|trans|raw }}</h1>
@@ -46,7 +54,17 @@
 
     
             
-            <div class="hero" style="background-image: url('../bootstrap/images/hero_1.jpg');"></div>
+            <div class="hero" style="background-image: url('../bootstrap/images/hero_1.jpg');">
+                
+                <div class="row">
+                    <div class="col-md-8 offset-md-2" style="margin-left: 38%; margin-top: 17%;">
+                        <h1>
+                            <a href="{{ path('security_login') }}" class="btn btn-info">
+                              Vous pouvez vous identifier pour commencer 😜😜 >></a>      
+                        </h1>
+                    </div>
+                </div>
+            </div>
             {# <div class="page-header">
                 <h1>Programme de Soutien à l'Ordonnateur National - FED</h1>
             </div> #}

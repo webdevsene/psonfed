@@ -31,6 +31,9 @@ class SecurityController extends AbstractController
     use TargetPathTrait;
 
     /**
+     * Here, we edited the @Route() annotation on the login() method 
+     * to render the login form on the homepage of our application
+     * 
      * @Route("/login", name="security_login")
      */
     public function login(Request $request, Security $security, AuthenticationUtils $helper): Response
@@ -38,8 +41,8 @@ class SecurityController extends AbstractController
         // if user is already logged in, don't display the login page again
         if ($security->isGranted('ROLE_USER')) {
             #return $this->redirectToRoute('blog_index');
-            #return $this->redirectToRoute('dossier_index');
-            return $this->redirectToRoute('psonfedhead');
+            # return $this->redirectToRoute('psonfedhead');
+            return $this->redirectToRoute('dossier_index');
         }
 
         // this statement solves an edge-case: if you change the locale in the login

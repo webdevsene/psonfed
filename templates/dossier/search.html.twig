@@ -3,26 +3,32 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('search') }}
+    {#Juery is necessary#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+
+        </script>
 {% endblock %}
+
 
 {% block body_id 'blog_search' %}
 
 {% block main %}
-    <form action="{{ path('doss_search') }}" method="GET">
+    <div id="search-results" class="example-wrapper"></div>
+
+    <form id="search-form" class="example-wrapper" role="search" action="{{ path('doss_search') }}" method="GET">
         <div class="form-group">
-            <input name="d"
+            <input type="text" 
+                   name="search"
                    class="form-control search-field"
-                   placeholder="{{ 'doss.search_for'|trans }}"
-                   autocomplete="off"
-                   value="{{ query }}"
-                   autofocus
-                   {#data-no-results-message="{{ 'post search_no_results'|trans }}"#}
+                   placeholder="Suche..."
             >
+            {#<button type="submit" class="btn btn-success" name="sub">search</button>#}
         </div>
     </form>
 
-    <div id="results">
-    </div>
+
 {% endblock %}
 
 {# {% block sidebar %}

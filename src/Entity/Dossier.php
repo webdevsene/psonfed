@@ -7,7 +7,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=DossierRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\DossierRepository")
  * @ORM\Table(name="dossier", indexes={@ORM\Index(columns={"titre", "analyse"}, flags={"fulltext"})})
  * @UniqueEntity(fields={"cote"}, errorPath="titre", message="doss.cote_unique")
  */

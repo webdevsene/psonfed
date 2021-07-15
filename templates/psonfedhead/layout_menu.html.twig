@@ -77,6 +77,8 @@
 
                             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                               <li><a href="/" class="nav-link">Accueil</a></li>
+                              {% if is_granted('ROLE_USER') %}
+
                               <li><a href="{{ path('dossier_index')}}" class="nav-link">Dossiers</a></li>
 
 
@@ -100,6 +102,7 @@
                               <li><a href="#why-us-section" class="nav-link">Projets</a></li>
 
                               <li><a href="#testimonials-section" class="nav-link">Conventions</a></li>
+                              {% endif %}
                               <li><a href="#contact-section" class="nav-link">Contact</a></li>
                               <li><a href="{{ path('security_login') }}" class="nav-link">Login</a></li>
                             </ul>
