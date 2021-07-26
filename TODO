@@ -3,7 +3,7 @@ Todo:
     en tant qu'utilisateur, je doit pouvoir rechercher un dossier en fonction de mots clés
   ☐ Gestion des utilisateurs dans le back office
     on doit fixer le bogue sur "le field password ne doit pas être null"
-  ☐ personnaliser la page index du dashborad
   ☐ Gestion des autorisations
-    la redirection des route selon un type utilisateur ROLE_USER, ROLE_ADMIN
+      la redirection des route selon un type utilisateur ROLE_USER, ROLE_ADMIN
+  ☐ personnaliser la page index du dashborad
   ☐ creer un layout un fichier extension twig pour le menu commun

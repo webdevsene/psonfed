@@ -104,7 +104,15 @@
                               <li><a href="#testimonials-section" class="nav-link">Conventions</a></li>
                               {% endif %}
                               <li><a href="#contact-section" class="nav-link">Contact</a></li>
-                              <li><a href="{{ path('security_login') }}" class="nav-link">Login</a></li>
+
+                              {# as user auth0 switch btn Login / Logout #}
+                              {% if app.user %}
+                                <li><a href="{{ path('security_logout') }}" class="nav-link">{{"Logout" |trans}}</a></li>
+                              {% else %}
+                                
+                                <li><a href="{{ path('security_login') }}" class="nav-link">Login</a></li>
+                              {% endif %}
+                              
                             </ul>
                           </nav>
 

@@ -17,6 +17,7 @@ class SearchDossierType extends AbstractType
                 'label' =>  false,
                 'attr' => [
                     'class' => 'form-control',
+                    'id' => 'search-form',
                     'placeholder' => 'Entrer un ou pluieurs mots-clés'
                 ],
                 'required' => true

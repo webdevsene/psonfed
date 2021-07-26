@@ -68,8 +68,8 @@ security:
         - { path: '^/psonfedhead', roles: ROLE_ADMIN }
         - { path: '^/(%app_locales%)/admin', roles: ROLE_ADMIN }
         #- { path: ^/(.*)/admin, roles: ROLE_ADMIN }
-        #- { path: ^/(.*)/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/(.*)/dossier, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(.*)/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(.*)/dossier, roles: [ROLE_USER, ROLE_MANAGER] }
         #- { path: ^/(.*)/conseil, roles: ROLE_PROPRIETAIRE }
         #- { path: ^/(.*)/finance, roles: ROLE_PROPRIETAIRE }
         #- { path: ^/(.*)/style, roles: ROLE_ADMIN }

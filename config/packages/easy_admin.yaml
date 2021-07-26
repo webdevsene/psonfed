@@ -20,7 +20,7 @@ easy_admin:
                     - fullname
                     # Fomulaire de création / modification d'un utilisateur
                     - { property: 'email'}
-                    - { property: 'password'}
+                    - { property: 'password', type: 'password'}
                     - roles
                     # Ici on retrouve notre propriété plainPassword pour la modification du mot de passe 
                     # - { property: 'plainPassword', type: 'password', type_options: { required: false }}

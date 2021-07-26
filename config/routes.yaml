@@ -13,5 +13,5 @@ homepage:
 
 doss_search:
     path: /dossier/search
-    controller: App\Controller\DossierController::search
+    controller: App\Controller\DossierController::searchAction
     methods: GET|POST

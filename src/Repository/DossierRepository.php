@@ -24,7 +24,7 @@ class DossierRepository extends ServiceEntityRepository
     /**
      * Recherche les dossiers sur liste en fonction du formulaire
      *
-     * @return void
+     *
      */
     public function search($mots)
     {        
@@ -66,50 +66,6 @@ class DossierRepository extends ServiceEntityRepository
 
         return (new Paginator($qb))->paginate($page);
     } */
-
-    /**
-     * @return Dossier[]
-     */
-     public function findBySearchQuery(string $query, int $limit = Paginator::PAGE_SIZE): array
-     {
-         $page = 1;
-         $searchTerms = $this->extractSearchTerms($query);
-
-         if (0 === \count($searchTerms)) {
-             return [];
-         }
-
-         $queryBuilder = $this->createQueryBuilder('d');
-
-         foreach ($searchTerms as $key => $term) {
-             $queryBuilder
-                 ->orWhere('d.titre LIKE :t_'.$key)
-                 ->setParameter('t_'.$key, '%'.$term.'%')
-             ;
-    }
-        
-         return $queryBuilder->orderBy('d.date_butoire', 'DESC')
-                             ->setMaxResults($limit)
-                             ->getQuery()
-                             ->getResult()
-         ;
-
-         # return (new Paginator($qb))->paginate($page);
-    }
-
-    /**
-     * Transforms the search string into an array of search terms.
-     */
-     private function extractSearchTerms(string $searchQuery): array
-     {
-         $searchQuery = u($searchQuery)->replaceMatches('/[[:space:]]+/', ' ')->trim();
-         $terms = array_unique($searchQuery->split(' '));
-
-         // ignore the search terms that are too short
-         return array_filter($terms, function ($term) {
-             return 2 <= $term->length();
-         });
-     }
 
 
     // /**

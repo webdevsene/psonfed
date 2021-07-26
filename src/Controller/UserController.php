@@ -35,7 +35,7 @@ class UserController extends EasyAdminController
     /**
      * @var UserPasswordHasherInterface
      */
-    ///private $passwordEncoder;
+        public $passwordEncoder;
 
     public function __construct(UserPasswordHasherInterface $passwordEncoder)
     {
@@ -46,13 +46,10 @@ class UserController extends EasyAdminController
     {
         // Avec FOSUserBundle, on faisait comme ça :
         // $this->get('fos_user.user_manager')->updateUser($user, false);
+        $user->setPassword($this->passwordEncoder->hashPassword($user));
+        
         $this->updatePassword($user);
 
-        $role = ['ROLE_MANAGER' => 'ROLE_MANAGER'];
-        $user->setRoles($role);
-
-        // on essaye de persister ici le mot de pass
-        $user->setPassword($this->passwordEncoder->hashPassword($user, $user->getPlainPassword()));
         parent::persistEntity($user);
     }
 
@@ -63,9 +60,6 @@ class UserController extends EasyAdminController
     public function edit(Request $request): Response
     {
         $user = $this->getUser();
-
-        $role [] = ['ROLE_MANAGER'];
-        $user->setRoles($role);
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);

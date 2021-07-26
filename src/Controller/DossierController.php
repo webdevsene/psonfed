@@ -110,13 +110,37 @@ class DossierController extends AbstractController
 
     /**
      * Search action method for Live earch feature.
+     * Creates a new ActionItem entity
+     * 
      * @Route("/search", name="doss_search")
      */
-    public function search(Request $request): Response
+    public function searchAction(DossierRepository $dr,  Request $request): Response
     {
-        return $this->render('dossier/search.html.twig', [
-            'cle' => "vaaleur test recherche dynamique"
-        ]);
+        //$dossier = $dr->findAll();
+
+        $query = $request->query->get('searchField', ''); // on recupere le input $_GET
+
+        if (!$request->isXmlHttpRequest()) {
+            return $this->render('dossier/search.html.twig', ['query' => $query]);
+        }
+
+        $foundDossiers = $dr->search($request->get('searchField')->getData());
+
+        //$foundDossiers = $dr->search($query);
+
+        $results = [];
+
+        foreach ($foundDossiers as $dossier) {
+            $results[] = [
+                'cote' => htmlspecialchars($dossier->getCote(), \ENT_COMPAT | \ENT_HTML5),
+                'titre' => htmlspecialchars($dossier->getTitre(), \ENT_COMPAT | \ENT_HTML5),
+                'analyse' => htmlspecialchars($dossier->getAnalyse(), \ENT_COMPAT | \ENT_HTML5),
+                'date_debut' => $dossier->getDateDebut()->format('M d, Y'),
+                'date_butoire' => $dossier->getDateButoire()->format('M d, Y'),
+            ];
+        }
+
+        return $this->json($results);
     } 
 
 }

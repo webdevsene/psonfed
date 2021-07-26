@@ -3,31 +3,64 @@
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('search') }}
-    {#Juery is necessary#}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    {# Jquery is necessary#}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#searchField').keyup(function(){
 
-        <script type="text/javascript">
+                // initialiser à vide le receptacle d'affichage
+                $('#search_result').html('');
 
-        </script>
+                //alert("okok");
+                var searchField = $(this).val();
+
+                if(searchField !== ""){
+                    $.ajax({
+                        type: "GET",
+                        url: "{{path("doss_search")}}",
+                        data: 'searchField=' + encodeURIComponent(searchField),
+                        success: function(data){
+                            if(data !== null){
+                                //$(data).append().html();
+                                $('#search_result').html(data);
+
+                                // vider le search-filed après affichage dans le receptacle
+                                console.log(searchField);
+                                $('#searchField').val("");
+
+                            }
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
 {% endblock %}
 
 
-{% block body_id 'blog_search' %}
+{# {% block body_id 'blog_search' %} #}
 
 {% block main %}
-    <div id="search-results" class="example-wrapper"></div>
 
-    <form id="search-form" class="example-wrapper" role="search" action="{{ path('doss_search') }}" method="GET">
+    {# <form id="search-form" class="example-wrapper" role="search" action="{{ path('doss_search') }}" method="GET">
+    </form> #}
         <div class="form-group">
-            <input type="text" 
-                   name="search"
-                   class="form-control search-field"
+            <input class="form-control"
+                   type="text"
+                   id="searchField"
+                   name="searchField"
+                   value=""
                    placeholder="Suche..."
             >
-            {#<button type="submit" class="btn btn-success" name="sub">search</button>#}
+            {# <button type="submit" class="btn btn-success" name="sub">search</button> #}
         </div>
-    </form>
 
+        <div>
+            <div class="" id="search_result"></div>        
+        </div>
 
 {% endblock %}
 
