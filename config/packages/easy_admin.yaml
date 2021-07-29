@@ -1,24 +1,21 @@
 # config/packages/easy_admin.yaml
 easy_admin:
+    # ...
+    design:
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - '@VichUploader/Form/fields.html.twig'
     entities:
         User:
             class: App\Entity\User
             # Notre controller spécifique
-            controller: App\Controller\Admin\User\UserAdminController
-
-            list:
-               fields:
-                   - username
-                   - fullname
-                   - email
-                   - password
-                   - roles
-                   
+            controller: App\Controller\Admin\UserCrudController
             form:
                 fields:
+                    # Fomulaire de création / modification d'un utilisateur
+                    - {type: 'group', icon: 'pencil', label: 'Basic Information', css_class: 'col-lg-7'}
                     - username
                     - fullname
-                    # Fomulaire de création / modification d'un utilisateur
                     - { property: 'email'}
                     - { property: 'password', type: 'password'}
                     - roles
@@ -27,3 +24,12 @@ easy_admin:
                     # if administrators are allowed to edit users' passwords and roles, add this:
                     - { property: 'plainPassword', type: 'password', type_options: { required: false } }
                     - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+        Document:
+            class: App\Entity\Document
+            list:
+                fields:
+                    - 'thumbnail'
+                    - { property: 'thumbnail', template: 'thumbnail.html.twig', base_path: '%uploads_path%' }
+            form:
+                fields:
+                    - { property: 'thumbnailFile', type: 'vich_file' }

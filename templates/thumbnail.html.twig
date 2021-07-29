@@ -1,0 +1,11 @@
+{#Error after upgrading to v3:
+Variable "field_options" does not exist.
+or
+Variable "value" does not exist.#}
+{#<a href="{{ value }}">View thumbnail (PDF)</a>
+<a href="{{ field_options.base_path ~ '/' ~ value }}">View thumbnail (PDF)</a>
+#}
+
+{#How to fix for easyadmin3:
+#thumbnail.html.twig#}
+<a href="{{ field.customOption('base_path') ~ '/' ~ entity.instance.thumbnail}}"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> View file (PDF)</a>

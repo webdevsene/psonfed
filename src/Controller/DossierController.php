@@ -119,12 +119,14 @@ class DossierController extends AbstractController
         //$dossier = $dr->findAll();
 
         $query = $request->query->get('searchField', ''); // on recupere le input $_GET
+        $limit = $request->query->get('l', 10);
 
         if (!$request->isXmlHttpRequest()) {
             return $this->render('dossier/search.html.twig', ['query' => $query]);
         }
 
-        $foundDossiers = $dr->search($request->get('searchField')->getData());
+        // $foundDossiers = $dr->search($request->get('searchField')->getData());
+        $foundDossiers = $dr->findBySearchQuery($request, $limit);
 
         //$foundDossiers = $dr->search($query);
 

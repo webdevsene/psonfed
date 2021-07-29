@@ -2,65 +2,131 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {# 
+     #}
     {{ encore_entry_script_tags('search') }}
-    
+
     {# Jquery is necessary#}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script>
-        $(document).ready(function(){
-            $('#searchField').keyup(function(){
 
-                // initialiser à vide le receptacle d'affichage
-                $('#search_result').html('');
+        (function ($) {
+            'use strict';
 
-                //alert("okok");
-                var searchField = $(this).val();
 
-                if(searchField !== ""){
-                    $.ajax({
-                        type: "GET",
-                        url: "{{path("doss_search")}}",
-                        data: 'searchField=' + encodeURIComponent(searchField),
-                        success: function(data){
-                            if(data !== null){
-                                //$(data).append().html();
-                                $('#search_result').html(data);
+            // INSTANTS SEARCH PUBLIC CLASS DEFINITION
+            // =======================================
 
-                                // vider le search-filed après affichage dans le receptacle
-                                console.log(searchField);
-                                $('#searchField').val("");
+            var InstantSearch = function (element, options) {
+                this.$input = $(element);
+                this.$form = this.$input.closest('form');
+                this.$preview = $('<ul class="search-preview list-group">').appendTo(this.$form);
+                this.options = $.extend({}, InstantSearch.DEFAULTS, this.$input.data(), options);
 
-                            }
-                        }
+                this.$input.keyup(this.debounce());
+            };
+
+            InstantSearch.DEFAULTS = {
+                minQueryLength: 2,
+                limit: 10,
+                delay: 500,
+                noResultsMessage: 'No results found'
+            };
+
+            InstantSearch.prototype.debounce = function () {
+                var delay = this.options.delay;
+                var search = this.search;
+                var timer = null;
+                var self = this;
+
+                return function () {
+                    clearTimeout(timer);
+                    timer = setTimeout(function () {
+                        search.apply(self);
+                    }, delay);
+                };
+            };
+
+            InstantSearch.prototype.search = function () {
+                var query = $.trim(this.$input.val()).replace(/\s{2,}/g, ' ');
+                if (query.length < this.options.minQueryLength) {
+                    this.$preview.empty();
+                    return;
+                }
+
+                var self = this;
+                var data = this.$form.serializeArray();
+                data['l'] = this.limit;
+
+                $.getJSON(this.$form.attr('action'), data, function (items) {
+                    self.show(items);
+                });
+            };
+
+            InstantSearch.prototype.show = function (items) {
+                var $preview = this.$preview;
+                var itemTemplate = this.options.itemTemplate;
+
+                if (0 === items.length) {
+                    $preview.html(this.options.noResultsMessage);
+                } else {
+                    $preview.empty();
+                    $.each(items, function (index, item) {
+                        $preview.append(itemTemplate.render(item));
                     });
                 }
-            });
+            };
 
+            // INSTANTS SEARCH PLUGIN DEFINITION
+            // =================================
+
+            function Plugin(option) {
+                return this.each(function () {
+                    var $this = $(this);
+                    var instance = $this.data('instantSearch');
+                    var options = typeof option === 'object' && option;
+
+                    if (!instance) $this.data('instantSearch', (instance = new InstantSearch(this, options)));
+
+                    if (option === 'search') instance.search();
+                })
+            }
+
+            $.fn.instantSearch = Plugin;
+            $.fn.instantSearch.Constructor = InstantSearch;
+
+        })(window.jQuery);
+
+
+        $(function() {
+            $('.search-field')
+                .instantSearch({
+                    delay: 100,
+                })
+                .keyup();
         });
+
     </script>
 {% endblock %}
 
-
-{# {% block body_id 'blog_search' %} #}
-
 {% block main %}
 
-    {# <form id="search-form" class="example-wrapper" role="search" action="{{ path('doss_search') }}" method="GET">
-    </form> #}
+    <form action="{{ path('doss_search') }}" method="get">
         <div class="form-group">
-            <input class="form-control"
-                   type="text"
-                   id="searchField"
-                   name="searchField"
-                   value=""
-                   placeholder="Suche..."
+            <input name="q"
+                   class="form-control search-field"
+                   placeholder="{{ 'post.search_for'|trans }}"
+                   autocomplete="off"
+                   value="{{ query }}"
+                   autofocus
+                   data-no-results-message="{{ 'post.search_no_results'|trans }}"
             >
-            {# <button type="submit" class="btn btn-success" name="sub">search</button> #}
         </div>
+    </form>
 
-        <div>
-            <div class="" id="search_result"></div>        
-        </div>
+    <div id="results">
+    </div>
 
 {% endblock %}
 

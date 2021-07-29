@@ -1,0 +1,361 @@
+warning: LF will be replaced by CRLF in .env.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in .env.test.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in .gitignore.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in assets/app.js.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in assets/bootstrap.js.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in assets/controllers.json.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in bin/phpunit.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in composer.lock.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/bundles.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/assets.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/cache.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/dev/monolog.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/easy_admin.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/framework.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/prod/deprecations.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/prod/monolog.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/prod/webpack_encore.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/routing.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/test/monolog.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/test/webpack_encore.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/twig.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/validator.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/packages/webpack_encore.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/preload.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/routes.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/routes/framework.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in config/services.yaml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in package.json.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in phpunit.xml.dist.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in public/.htaccess.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in public/index.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Controller/Admin/DashboardController.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Controller/DossierController.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Entity/Comment.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Entity/Dossier.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Entity/Post.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Entity/Tag.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Kernel.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Repository/DossierRepository.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in symfony.lock.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in templates/base.html.twig.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in templates/dossier/search.html.twig.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in tests/bootstrap.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in webpack.config.js.
+The file will have its original line endings in your working directory
+[1mdiff --git a/.env b/.env[m
+[1mindex 307d3bb..016a18e 100644[m
+[1m--- a/.env[m
+[1m+++ b/.env[m
+[36m@@ -15,9 +15,7 @@[m
+ [m
+ ###> symfony/framework-bundle ###[m
+ APP_ENV=dev[m
+[31m-APP_SECRET=2ca64f8d83b9e89f5f19d672841d6bb8[m
+[31m-#TRUSTED_PROXIES=127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16[m
+[31m-#TRUSTED_HOSTS='^(localhost|example\.com)$'[m
+[32m+[m[32mAPP_SECRET=9e70cfc071ff801b2c26e98d637535b0[m
+ ###< symfony/framework-bundle ###[m
+ [m
+ ###> doctrine/doctrine-bundle ###[m
+[1mdiff --git a/.env.test b/.env.test[m
+[1mindex 9820405..9e7162f 100644[m
+[1m--- a/.env.test[m
+[1m+++ b/.env.test[m
+[36m@@ -4,4 +4,3 @@[m [mAPP_SECRET='$ecretf0rt3st'[m
+ SYMFONY_DEPRECATIONS_HELPER=999999[m
+ PANTHER_APP_ENV=panther[m
+ PANTHER_ERROR_SCREENSHOT_DIR=./var/error-screenshots[m
+[31m-DATABASE_URL=sqlite:///%kernel.project_dir%/data/database_test.sqlite[m
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex e3ab774..86e09ce 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -12,12 +12,12 @@[m
+ ###< symfony/framework-bundle ###[m
+ [m
+ ###> symfony/phpunit-bridge ###[m
+[31m-.phpunit[m
+ .phpunit.result.cache[m
+ /phpunit.xml[m
+ ###< symfony/phpunit-bridge ###[m
+ ###> symfony/webpack-encore-bundle ###[m
+ /node_modules/[m
+[32m+[m[32m/public/build/[m
+ npm-debug.log[m
+ yarn-error.log[m
+ ###< symfony/webpack-encore-bundle ###[m
+[1mdiff --git a/assets/app.js b/assets/app.js[m
+[1mindex 80bbef8..bb0a6aa 100644[m
+[1m--- a/assets/app.js[m
+[1m+++ b/assets/app.js[m
+[36m@@ -1,18 +1,12 @@[m
+[31m-import './styles/app.scss';[m
+[31m-[m
+[31m-// loads the Bootstrap jQuery plugins[m
+[31m-import 'bootstrap-sass/assets/javascripts/bootstrap/transition.js';[m
+[31m-import 'bootstrap-sass/assets/javascripts/bootstrap/alert.js';[m
+[31m-import 'bootstrap-sass/assets/javascripts/bootstrap/collapse.js';[m
+[31m-import 'bootstrap-sass/assets/javascripts/bootstrap/dropdown.js';[m
+[31m-import 'bootstrap-sass/assets/javascripts/bootstrap/modal.js';[m
+[31m-import 'jquery'[m
+[31m-[m
+[31m-// loads the code syntax highlighting library[m
+[31m-import './js/highlight.js';[m
+[31m-[m
+[31m-// Creates links to the Symfony documentation[m
+[31m-import './js/doclinks.js';[m
+[32m+[m[32m/*[m
+[32m+[m[32m * Welcome to your app's main JavaScript file![m
+[32m+[m[32m *[m
+[32m+[m[32m * We recommend including the built version of this JavaScript file[m
+[32m+[m[32m * (and its CSS file) in your base layout (base.html.twig).[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32m// any CSS you import will output into a single css file (app.css in this case)[m
+[32m+[m[32mimport './styles/app.css';[m
+ [m
+ // start the Stimulus application[m
+ import './bootstrap';[m
+[1mdiff --git a/bin/phpunit b/bin/phpunit[m
+[1mindex 2338d1b..f26f2c7 100644[m
+[1m--- a/bin/phpunit[m
+[1m+++ b/bin/phpunit[m
+[36m@@ -1,16 +1,19 @@[m
+ #!/usr/bin/env php[m
+ <?php[m
+[31m-if (file_exists(dirname(__DIR__).'/vendor/phpunit/phpunit/phpunit')) {[m
+[31m-    require dirname(__DIR__).'/vendor/phpunit/phpunit/phpunit';[m
+[32m+[m
+[32m+[m[32mif (!ini_get('date.timezone')) {[m
+[32m+[m[32m    ini_set('date.timezone', 'UTC');[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mif (is_file(dirname(__DIR__).'/vendor/phpunit/phpunit/phpunit')) {[m
+[32m+[m[32m    define('PHPUNIT_COMPOSER_INSTALL', dirname(__DIR__).'/vendor/autoload.php');[m
+[32m+[m[32m    require PHPUNIT_COMPOSER_INSTALL;[m
+[32m+[m[32m    PHPUnit\TextUI\Command::main();[m
+ } else {[m
+[31m-    if (!file_exists(dirname(__DIR__).'/vendor/symfony/phpunit-bridge/bin/simple-phpunit.php')) {[m
+[32m+[m[32m    if (!is_file(dirname(__DIR__).'/vendor/symfony/phpunit-bridge/bin/simple-phpunit.php')) {[m
+         echo "Unable to find the `simple-phpunit.php` script in `vendor/symfony/phpunit-bridge/bin/`.\n";[m
+         exit(1);[m
+     }[m
+ [m
+[31m-    if (false === getenv('SYMFONY_PHPUNIT_DIR')) {[m
+[31m-        putenv('SYMFONY_PHPUNIT_DIR='.__DIR__.'/.phpunit');[m
+[31m-    }[m
+[31m-[m
+     require dirname(__DIR__).'/vendor/symfony/phpunit-bridge/bin/simple-phpunit.php';[m
+ }[m
+[1mdiff --git a/composer.json b/composer.json[m
+[1mindex c6fd51f..f72f5b5 100644[m
+[1m--- a/composer.json[m
+[1m+++ b/composer.json[m
+[36m@@ -41,7 +41,8 @@[m
+         "symfony/yaml": "^5.3",[m
+         "tgalopin/html-sanitizer-bundle": "^1.2",[m
+         "twig/intl-extra": "^3.0",[m
+[31m-        "twig/markdown-extra": "^3.0"[m
+[32m+[m[32m        "twig/markdown-extra": "^3.0",[m
+[32m+[m[32m        "vich/uploader-bundle": "^1.18"[m
+     },[m
+     "require-dev": {[m
+         "dama/doctrine-test-bundle": "^6.2",[m
+[36m@@ -76,7 +77,8 @@[m
+     "scripts": {[m
+         "auto-scripts": {[m
+             "cache:clear": "symfony-cmd",[m
+[31m-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"[m
+[32m+[m[32m            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",[m
+[32m+[m[32m            "assets:install %PUBLIC_DIR%": "symfony-cmd"[m
+         },[m
+         "post-install-cmd": [[m
+             "@auto-scripts"[m
+[1mdiff --git a/composer.lock b/composer.lock[m
+[1mindex 04e3a11..2a46978 100644[m
+[1m--- a/composer.lock[m
+[1m+++ b/composer.lock[m
+[36m@@ -4,7 +4,7 @@[m
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",[m
+         "This file is @generated automatically"[m
+     ],[m
+[31m-    "content-hash": "6d837959e3c2d9d1bf7a4d5599c1b377",[m
+[32m+[m[32m    "content-hash": "2a0676d833bb61413e5b752119e75280",[m
+     "packages": [[m
+         {[m
+             "name": "composer/package-versions-deprecated",[m
+[36m@@ -1435,16 +1435,16 @@[m
+         },[m
+         {[m
+             "name": "easycorp/easyadmin-bundle",[m
+[31m-            "version": "v3.4.1",[m
+[32m+[m[32m            "version": "v3.4.3",[m
+             "source": {[m
+                 "type": "git",[m
+                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",[m
+[31m-                "reference": "b4b17bf13e954ac61badd5286d9ea247676c0a9c"[m
+[32m+[m[32m                "reference": "fa4efb7440f2dfdf1cdfc3e14da6309af5b2486f"[m
+             },[m
+             "dist": {[m
+                 "type": "zip",[m
+[31m-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/b4b17bf13e954ac61badd5286d9ea247676c0a9c",[m
+[31m-                "reference": "b4b17bf13e954ac61badd5286d9ea247676c0a9c",[m
+[32m+[m[32m                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/fa4efb7440f2dfdf1cdfc3e14da6309af5b2486f",[m
+[32m+[m[32m                "reference": "fa4efb7440f2dfdf1cdfc3e14da6309af5b2486f",[m
+                 "shasum": ""[m
+             },[m
+             "require": {[m
+[36m@@ -1518,7 +1518,7 @@[m
+             ],[m
+             "support": {[m
+                 "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",[m
+[31m-                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v3.4.1"[m
+[32m+[m[32m                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v3.4.3"[m
+             },[m
+             "funding": [[m
+                 {[m
+[36m@@ -1526,7 +1526,7 @@[m
+                     "type": "github"[m
+                 }[m
+             ],[m
+[31m-            "time": "2021-07-05T17:42:38+00:00"[m
+[32m+[m[32m            "time": "2021-07-25T17:27:01+00:00"[m
+         },[m
+         {[m
+             "name": "egulias/email-validator",[m
+[36m@@ -1995,6 +1995,70 @@[m
+             "abandoned": true,[m
+             "time": "2014-10-12T19:18:40+00:00"[m
+         },[m
+[32m+[m[32m        {[m
+[32m+[m[32m            "name": "jms/metadata",[m
+[32m+[m[32m            "version": "2.5.0",[m
+[32m+[m[32m            "source": {[m
+[32m+[m[32m                "type": "git",[m
+[32m+[m[32m                "url": "https://github.com/schmittjoh/metadata.git",[m
+[32m+[m[32m                "reference": "b5c52549807b2d855b3d7e36ec164c00eb547338"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "dist": {[m
+[32m+[m[32m                "type": "zip",[m
+[32m+[m[32m                "url": "https://api.github.com/repos/schmittjoh/metadata/zipball/b5c52549807b2d855b3d7e36ec164c00eb547338",[m
+[32m+[m[32m                "reference": "b5c52549807b2d855b3d7e36ec164c00eb547338",[m
+[32m+[m[32m                "shasum": ""[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "require": {[m
+[32m+[m[32m                "php": "^7.2|^8.0"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "require-dev": {[m
+[32m+[m[32m                "doctrine/cache": "^1.0",[m
+[32m+[m[32m                "doctrine/coding-standard": "^8.0",[m
+[32m+[m[32m                "mikey179/vfsstream": "^1.6.7",[m
+[32m+[m[32m                "phpunit/phpunit": "^8.5|^9.0",[m
+[32m+[m[32m                "psr/container": "^1.0",[m
+[32m+[m[32m                "symfony/cache": "^3.1|^4.0|^5.0",[m
+[32m+[m[32m                "symfony/dependency-injection": "^3.1|^4.0|^5.0"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "type": "library",[m
+[32m+[m[32m            "extra": {[m
+[32m+[m[32m                "branch-alias": {[m
+[32m+[m[32m                    "dev-master": "2.x-dev"[m
+[32m+[m[32m                }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "autoload": {[m
+[32m+[m[32m                "psr-4": {[m
+[32m+[m[32m                    "Metadata\\": "src/"[m
+[32m+[m[32m                }[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "notification-url": "https://packagist.org/downloads/",[m
+[32m+[m[32m            "license": [[m
+[32m+[m[32m                "MIT"[m
+[32m+[m[32m            ],[m
+[32m+[m[32m            "authors": [[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    "name": "Johannes M. Schmitt",[m
+[32m+[m[32m                    "email": "schmittjoh@gmail.com"[m
+[32m+[m[32m                },[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    "name": "Asmir Mustafic",[m
+[32m+[m[32m                    "email": "goetas@gmail.com"[m
+[32m+[m[32m                }[m
+[32m+[m[32m            ],[m
+[32m+[m[32m            "description": "Class/method/property metadata management in PHP",[m
+[32m+[m[32m            "keywords": [[m
+[32m+[m[32m                "annotations",[m
+[32m+[m[32m                "metadata",[m
+[32m+[m[32m                "xml",[m
+[32m+[m[32m                "yaml"[m
+[32m+[m[32m            ],[m
+[32m+[m[32m            "support": {[m
+[32m+[m[32m                "issues": "https://github.com/schmittjoh/metadata/issues",[m
+[32m+[m[32m                "source": "https://github.com/schmittjoh/metadata/tree/2.5.0"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "time": "2021-03-07T19:20:09+00:00"[m
+[32m+[m[32m        },[m
+         {[m
+             "name": "kilik/table",[m
+             "version": "2.8.0",[m
+[36m@@ -8508,6 +8572,112 @@[m
+                 }[m
+             ],[m
+             "time": "2021-05-16T12:14:13+00:00"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        {[m
+[32m+[m[32m            "name": "vich/uploader-bundle",[m
+[32m+[m[32m            "version": "1.18.0",[m
+[32m+[m[32m            "source": {[m
+[32m+[m[32m                "type": "git",[m
+[32m+[m[32m                "url": "https://github.com/dustin10/VichUploaderBundle.git",[m
+[32m+[m[32m                "reference": "c5250c8d6a072960250ce5130e68a5693b3b48dd"[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "dist": {[m
+[32m+[m[32m                "type": "zip",[m
+[32m+[m[32m                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/c5250c8d6a072960250ce5130e68a5693b3b48dd",[m
+[32m+[m[32m                "reference": "c5250c8d6a072960250ce5130e68a5693b3b48dd",[m
+[32m+[m[32m                "shasum": ""[m
+[32m+[m[32m            },[m
+[32m+[m[32m            "require": {[m
+[32m+[m[32m                "ext-simplexml": "*"

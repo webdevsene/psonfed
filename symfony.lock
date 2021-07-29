@@ -148,6 +148,9 @@
     "guzzlehttp/streams": {
         "version": "3.0.0"
     },
+    "jms/metadata": {
+        "version": "2.5.0"
+    },
     "kilik/table": {
         "version": "2.8.0"
     },
@@ -258,6 +261,9 @@
         "files": [
             "config/packages/dev/debug.yaml"
         ]
+    },
+    "symfony/debug-pack": {
+        "version": "v1.0.9"
     },
     "symfony/dependency-injection": {
         "version": "v5.3.0"
@@ -430,6 +436,9 @@
     },
     "symfony/polyfill-uuid": {
         "version": "v1.23.0"
+    },
+    "symfony/profiler-pack": {
+        "version": "v1.0.5"
     },
     "symfony/property-access": {
         "version": "v5.3.0"
@@ -610,5 +619,17 @@
     },
     "twig/twig": {
         "version": "v3.3.2"
+    },
+    "vich/uploader-bundle": {
+        "version": "1.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.7",
+            "ref": "c4f5755b37fb65b9c6a3cbdae91205c15a137ed4"
+        },
+        "files": [
+            "./config/packages/vich_uploader.yaml"
+        ]
     }
 }

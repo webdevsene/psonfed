@@ -1,6 +1,6 @@
 <?php
 
-#namespace DoctrineExtensions\Query\Mysql;
+#namespace Doctrine\Extensions\Query\Mysql;
 namespace App\Extensions\ExtDoctorOrm;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DossierRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -51,11 +53,20 @@ class Dossier
     private $date_butoire;
 
     /**
-     * iniitilized createdAt filed dateTime to Now
+     * Bidirectional - One-To-Many (INVERSED SIDE)
+     * One Dossier can have many documents, which use it
+     * @var ArrayCollection $document
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="dossier", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $document ;
+
+    /**
+     * iniitilized createdAt field dateTime to Now
      */
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->document = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,6 +142,36 @@ class Dossier
     public function setDateButoire(?\DateTimeInterface $date_butoire): self
     {
         $this->date_butoire = $date_butoire;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Document[]
+     */
+    public function getDocument(): Collection
+    {
+        return $this->document;
+    }
+
+    public function addDocument(Document $document): self
+    {
+        if (!$this->document->contains($document)) {
+            $this->document[] = $document;
+            $document->setDossier($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Document $document): self
+    {
+        if ($this->document->removeElement($document)) {
+            // set the owning side to null (unless already changed)
+            if ($document->getDossier() === $this) {
+                $document->setDossier(null);
+            }
+        }
 
         return $this;
     }
