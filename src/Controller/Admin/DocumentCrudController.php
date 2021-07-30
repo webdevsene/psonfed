@@ -4,14 +4,17 @@ namespace App\Controller\Admin;
 
 use App\Entity\Document;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class DocumentCrudController extends AbstractCrudController
@@ -36,7 +39,7 @@ class DocumentCrudController extends AbstractCrudController
 
         return [
             //FormField::addPanel('Informations importantes'),
-            TextField::new('titre'),
+            TextField::new('titre')->onlyOnForms(),
             TextEditorField::new('description'),
             TextField::new('type')->onlyWhenCreating(),
             TextField::new('auteur')->onlyWhenCreating(),
@@ -57,6 +60,19 @@ class DocumentCrudController extends AbstractCrudController
             DateField::new('updatedAt')->setLabel('Dernière modification')->onlyOnIndex(),
             AssociationField::new('dossier'),
         ];
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL);
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['createdAt' => "DESC"])
+        ;
     }
 
 }

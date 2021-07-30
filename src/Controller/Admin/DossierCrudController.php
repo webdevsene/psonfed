@@ -37,7 +37,7 @@ class DossierCrudController extends AbstractCrudController
          * affichage en mode tri descendant
          */
         return $crud
-            ->setDefaultSort(['date_butoire' => 'DESC'])
+            ->setDefaultSort(['createdAt' => 'DESC'])
             // ...
         ;
     }
