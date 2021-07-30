@@ -44,24 +44,24 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
         /*$slug = $this->slugger->slugify($entity->getTitle());
         $entity->setSlug($slug); */
-        
-        $now = new DateTime('now'); 
+
+        $now = new DateTime('now');
         $entity->setCreatedAt($now);
-        
+
     }
-    
+
     /**
      * on souhaite definir dans ce qui suit une methode 
      * pour hasher le mot_de_pass de l'utilisateur avant/après persistance en BD
      */
     public function setUserPasswordAndRoles(BeforeEntityPersistedEvent $event){
-        
+
         $entity_user = $event->getEntityInstance();
-        
+
         if (!($entity_user instanceof User)) {
             return;
         }
-        
+
         // as default context pw is @Enga2013@ and role user is ROLE_USER
         $entity_user->setPassword($this->passwordEncoder->hashPassword($entity_user,$entity_user->getPassword()));
 

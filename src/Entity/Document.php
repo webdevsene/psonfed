@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\DocumentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use \Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=DocumentRepository::class)
@@ -58,6 +59,7 @@ class Document
 
     /**
      * @Vich\UploadableField(mapping="docs_thumbnails", fileNameProperty="thumbnail")
+     * @var File $thumbnailFile
      */
     private $thumbnailFile;
 
@@ -87,21 +89,18 @@ class Document
      * @param mixed $thumbnailFile
      * @throws \Exception
      */
-    public function setThumbnailFile($thumbnailFile): void
+    public function setThumbnailFile(File $thumbnailFile = null): void
     {
         $this->thumbnailFile = $thumbnailFile;
 
         if ($thumbnailFile) {
-            $this->updatedAt = new \DateTime();
+            $this->updatedAt = new \DateTime('now');
         }
     }
 
     public function __construct()
     {
         //$this->tags = new ArrayCollection();
-        //$this->dossier = new ArrayCollection();
-
-        //$this->dossier = new Dossier(); //initialise le dossier_id dans la bd par defaut ceci est à modifier plus tard
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
@@ -200,7 +199,7 @@ class Document
         return $this->thumbnail;
     }
 
-    public function setThumbnail(string $thumbnail): self
+    public function setThumbnail(?string $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 
@@ -217,5 +216,10 @@ class Document
         $this->dossier = $dossier;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->thumbnail;
     }
 }
