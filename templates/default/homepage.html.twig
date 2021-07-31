@@ -54,14 +54,20 @@
 
     
             
-            <div class="hero" style="background-image: url('../bootstrap/images/hero_1.jpg');">
+            <div class="hero" style="background-image: url('../bootstrap/images/hero_2.jpg');">
                 
                 <div class="row">
                     <div class="col-md-8 offset-md-2" style="margin-left: 38%; margin-top: 17%;">
-                        <h1>
-                            <a href="{{ path('security_login') }}" class="btn btn-info">
-                              Vous pouvez vous identifier pour commencer 😜😜 >></a>      
-                        </h1>
+                        {% if app.user %}
+                            {# do anythink if there are not no user login in #}
+                        {% else %}
+                            {# do this if there are any user login in #}
+                            <h1>
+                                <a href="{{ path('security_login') }}" class="btn btn-info btn-lg" role="button">
+                                  Ouvrir une session 😜😜 >></a>      
+                            </h1>
+                        {% endif %}
+                            
                     </div>
                 </div>
             </div>

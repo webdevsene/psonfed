@@ -70,6 +70,8 @@
 
                         <div class="site-logo">
                           <a href="/" class="text-black"><span class="text-primary">PSON</a>
+                          <a href="/" class="text-black"><span class="text-primary"><img src="../bootstrap/images/flague.png" style="opacity: 0.8; width: 22px; "/></a>
+                          <a href="/" class="text-black"><span class="text-primary"><img src="../bootstrap/images/flagsn.png" style="opacity: 0.7; width: 22px; "/></a>
                         </div>
 
                         <div class="col-12">
@@ -105,7 +107,7 @@
                               {% endif %}
                               <li><a href="#contact-section" class="nav-link">Contact</a></li>
 
-                              {# as user auth0 switch btn Login / Logout #}
+                              {# as user auth0 switch to btn Login / Logout #}
                               {% if app.user %}
                                 <li><a href="{{ path('security_logout') }}" class="nav-link">{{"Logout" |trans}}</a></li>
                               {% else %}

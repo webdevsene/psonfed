@@ -28,6 +28,10 @@
                                 PSON
                             </a>
 
+                            {#<a href="/" class="text-black"><span class="text-primary">PSON</a>#}
+                            <a href="/" class="navbar-brand"><img src="{{ asset('bootstrap/images/flague.png') }}" style="opacity: 0.8; width: 22px; "/></a>
+                            <a href="/" class="navbar-brand"><img src="{{ asset('bootstrap/images/flagsn.png') }}" style="opacity: 0.7; width: 22px; "/></a>
+
                             <button type="button" class="navbar-toggle"
                                     data-toggle="collapse"
                                     data-target=".navbar-collapse">
@@ -49,12 +53,18 @@
                                         </a>
                                     </li>
                                     
-                                    {% if is_granted('ROLE_ADMIN') %}
+                                    {% if app.user %}
                                           <!-- commentaire ici on ajoute au menu liste des dossiers dynamique
                                     connection en tant que admin -->
                                     <li>
                                         <a href="{{ path('dossier_index') }}">
-                                            <i class="fa fa-folder-open" aria-hidden="true"></i> {{ 'Dossiers'|trans }}
+                                            <i class="fa fa-folder-open" aria-hidden="true"></i> {{ 'Dossiers List'|trans }}
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="{{ path('document_index') }}">
+                                            <i class="fa fa-file-text" aria-hidden="true"></i> {{ 'Documents List'|trans }}
                                         </a>
                                     </li>
                                     {% endif %}

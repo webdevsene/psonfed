@@ -5,11 +5,49 @@
 
     <div class="jumbotron">
         <h3 class="display-4">GED PSON-FED Centre d'administration</h3>
-        <p class="lead">Centre d'aministration GEDPSONFED !</p>
+        <p class="lead">Centre d'aministration GED PSON/FED !</p>
         <hr class="my-2">
         {# <p>More info</p>
+        #}
         <p class="lead">
-            <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-        </p> #}
+            <a class="btn btn-primary btn-lg" href="{{ path('dossier_index') }}" role="button">app public</a>
+        </p>
+    </div>
+
+    <div class="container">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+            </ol>
+            <!-- Icon Cards-->
+    </div>
+    <div class="container">    
+        <div class="row mt-3">
+                <div class="col-6 alert-success">
+                    <span class="display-3"> {{ users }} </span> Utilisateurs
+                </div>
+                <div class="col-6 alert-dark">
+                    <span class="display-3"> {{ dossiers }} </span> Dossiers
+                </div>
+        </div>
+
+        <div class="row mt-5">
+                <div class="col-12">
+                    <h3> Liste des documents </h3>
+
+                    <ul class="list-group">
+                        {% for doc in documents %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="display-4">
+                                <i class="fa fa-file-text"></i>
+                                {{ doc.titre }}
+                            </span>
+                            <span class="badge badge-pill">
+                                <embed type="application/pdf" src="{{ vich_uploader_asset(doc, 'thumbnailFile') }}" style="width: 150px;">
+                            </span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
     </div>
 {% endblock %}

@@ -83,6 +83,19 @@ class DossierRepository extends ServiceEntityRepository
         });
     }
 
+    /**
+     * @return int|mixed|string|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function countAllDossier()
+    {
+        $queryBuilder = $this->createQueryBuilder('a');
+        //$queryBuilder->select('COUNT(a.id) as value');
+        $queryBuilder->select('COUNT(a.id)');
+        //return $queryBuilder->getQuery()->getOneOrNullResult();
+        return $queryBuilder->getQuery()->getSingleScalarResult();
+    }
+
     /*  public function findOneByTitre($value): ?Dossier
     {
         return $this->createQueryBuilder('d')

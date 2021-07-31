@@ -6,10 +6,12 @@
 {% block body %}
 
     <div class="form-inline input-group" style="margin-left: 70%;">
-        <div class="form-outline">
-            {{ form(form)}}
-        </div>
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+            {{ form_end(form) }}
     </div>
+        <div class="form-outline">
+        </div>
 
     <h1>Liste des Dossiers /Classeurs</h1>
 

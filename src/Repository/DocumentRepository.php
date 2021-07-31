@@ -19,6 +19,28 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
+    
+    /**
+     * Recherche les dossiers sur liste en fonction du formulaire     *
+     *
+     */
+    public function search($mots)
+    {
+        $query = null;
+        if ($mots != null) {
+
+            #$query->where('d.active = 1');
+            $query = $this->createQueryBuilder('d')
+                          ->andWhere('MATCH_AGAINST(d.titre, d.description, d.thumbnail) AGAINST(:mots boolean)>0')
+                          ->setParameter('mots', $mots)
+            ;
+        }
+
+        return $query->getQuery()
+                     ->getResult();
+
+    }
+
     // /**
     //  * @return Document[] Returns an array of Document objects
     //  */

@@ -11,6 +11,7 @@ use \Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=DocumentRepository::class)
+ * @ORM\Table(name="document", indexes={@ORM\Index(columns={"titre", "description", "thumbnail"}, flags={"fulltext"})})
  * @Vich\Uploadable
  */
 class Document
