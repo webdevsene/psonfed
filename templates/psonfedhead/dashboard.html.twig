@@ -15,12 +15,8 @@
     </div>
 
     <div class="container">
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-            </ol>
-            <!-- Icon Cards-->
     </div>
-    <div class="container">    
+    <div class="container">
         <div class="row mt-3">
                 <div class="col-6 alert-success">
                     <span class="display-3"> {{ users }} </span> Utilisateurs
@@ -32,17 +28,17 @@
 
         <div class="row mt-5">
                 <div class="col-12">
-                    <h3> Liste des documents </h3>
-
+                    <p class="h2"> Liste des documents</p>
                     <ul class="list-group">
                         {% for doc in documents %}
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span class="display-4">
+                            <span class="display-8">
                                 <i class="fa fa-file-text"></i>
                                 {{ doc.titre }}
                             </span>
-                            <span class="badge badge-pill">
-                                <embed type="application/pdf" src="{{ vich_uploader_asset(doc, 'thumbnailFile') }}" style="width: 150px;">
+                            <span class="badge badge-pill badge-primary">
+                                {#<embed type="application/pdf" src="{{ vich_uploader_asset(doc, 'thumbnailFile') }}" style="width: 150px;">#}
+                                <i class="fa fa-map-pin" aria-hidden="true"></i>
                             </span>
                         </li>
                         {% endfor %}

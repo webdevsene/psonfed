@@ -22,11 +22,16 @@ class DocumentController extends AbstractController
     public function index(DocumentRepository $documentRepository, Request $request): Response
     {
         $docs = $documentRepository->findAll();
-
+        // recuperer les urls des fichiers
+        //$filesPath = [];
+        //foreach ($docs as $doc) {
+        //    $filesPath = $helper->asset($doc, 'thumbnailFile');
+        //}
+        
         // creation du formulaire
         $form = $this->createForm(SearchDocumentType::class);
         $search = $form->handleRequest($request);
-
+        
         // on recherche les documents correspondants aux mots clés
         if ($form->isSubmitted() && $form->isValid()) {
             $docs = $documentRepository->search($search->get('mots')->getData());

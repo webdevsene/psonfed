@@ -65,12 +65,12 @@ security:
     access_control:
         # this is a catch-all for the admin area
         # additional security lives in the controllers
-        - { path: '^/psonfedhead', roles: ROLE_ADMIN }
+        - { path: '^/(.*)/psonfedhead', roles: ROLE_ADMIN }
         - { path: '^/(%app_locales%)/admin', roles: ROLE_ADMIN }
-        #- { path: ^/(.*)/admin, roles: ROLE_ADMIN }
+        # - { path: ^/(.*)/admin, roles: ROLE_ADMIN }
         - { path: ^/(.*)/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(.*)/dossier, roles: [ROLE_USER, ROLE_MANAGER] }
-        #- { path: ^/(.*)/conseil, roles: ROLE_PROPRIETAIRE }
+        - { path: ^/(.*)/document, roles: [ROLE_USER, ROLE_ADMIN] }
         #- { path: ^/(.*)/finance, roles: ROLE_PROPRIETAIRE }
         #- { path: ^/(.*)/style, roles: ROLE_ADMIN }
         #- { path: ^/(.*)/parametres, roles: ROLE_ADMIN }

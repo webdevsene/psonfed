@@ -1,65 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Document index{% endblock %}
-{% block stylesheet %}
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="{{ asset('bootstrap/css/usefulltable.css') }}"  rel="stylesheet">
-{% endblock %}
 
 {% block body %}
 
     <div class="main-content">
         <div class="container mt-7">
-          <!-- Table -->
-        <div class="form-inline input-group" style="margin-left: 70%;">
-            <div class="form-outline">
-                {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                {{ form_end(form) }}
+        <!-- Table -->
+
+            <div class="form-inline input-group" style="margin-left: 70%;">
+                <div class="form-outline">
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }} 
+                    {{ form_end(form) }}
+                </div>
             </div>
-        </div>
 
             <div class="col">
-              <div class="card shadow">
+                <div class="card shadow">
                 <div class="card-header border-0">
                     <h3 class="mb-0">Liste des Documents</h3>
-                </div>
+                    <pre>
+                    </pre>
 
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Titre</th>
-                                <th scope="col">Fichier</th>
-                                <th scope="col">Dossier</th>
-                                <th scope="col">UpdatedAt</th>
-                                <th scope="col">actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for document in documents %}
-                                <tr>
-                                    <td>{{ document.titre }}</td>
-                                    <td><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ asset(vich_uploader_asset(document, 'thumbnailFile')) }}</td>
-                                    <td>{{ document.dossier }}</td>
-                                    <td>{{ document.updatedAt ? document.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                                    <td>
-                                        <a href="{{ path('document_show', {'id': document.id}) }}">show</a>
-                                        {#<a href="{{ path('document_edit', {'id': document.id}) }}">edit</a>#}
-                                    </td>
-                                </tr>
-                            {% else %}
-                                <tr>
-                                    <td colspan="10">no records found</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
                 </div>
               </div>
+
+    {% for docx in documents %}
+
+        <div class="card text-dark bg-light mb-12">
+            <div class="card-header">
+                <h2><a href="#" >{{ docx.titre }}</a></h2>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title"><a href="" class="btn btn-outline-info"> {{ docx.dossier }} </a></h4>
+                <p>
+                    <a class="btn btn-outline-info" href="{{ asset('/uploads/files/' ~ docx.thumbnail) }}"> <i class="fa fa-file-pdf-o" aria-hidden="true"></i>{{ docx.thumbnail }}</a>
+                 </p>
+            </div>
+            <div class="card-footer text-muted">
+                <p class="post-metadata">
+                    <span> <a href="{{ path('document_show', {'id': docx.id}) }}" class="btn btn-info"> Voir <i class="fa fa-plus" aria-hidden="true"></a></i></span>
+                    <span class="metadata"><i class="fa fa-calendar"></i> {{ docx.updatedAt ? docx.updatedAt|date('Y-m-d') : '' }}</span>
+                    <span class="metadata"><i class="fa fa-calendar"></i> {{ docx.createdAt ? docx.createdAt|date('Y-m-d') : '' }}</span>
+                </p>
+            </div>
+        </div>
+        <hr>
+    {% else %}
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">no reecord found</h4>
+          <p></p>
+          <p class="mb-0"></p>
+        </div>
+    {% endfor %}
             </div>
         </div>
     </div>
-
     {#<a href="{{ path('document_new') }}">Create new</a>#}
 {% endblock %}

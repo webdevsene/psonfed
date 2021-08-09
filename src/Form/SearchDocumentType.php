@@ -24,7 +24,7 @@ class SearchDocumentType extends AbstractType
             ])
             ->add('Rechercher', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary',
+                    'class' => 'btn btn-outline-primary',
                 ],
             ]
             )

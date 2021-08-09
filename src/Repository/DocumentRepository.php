@@ -19,9 +19,8 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
-    
     /**
-     * Recherche les dossiers sur liste en fonction du formulaire     *
+     * Recherche les dossiers sur liste en fonction du formulaire
      *
      */
     public function search($mots)

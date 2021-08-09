@@ -31,7 +31,6 @@ class DocumentCrudController extends AbstractCrudController
         return Document::class;
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         //$thumbnailFile = TextareaField::new('thumbnailFile')->setFormType(VichFileType::class);
@@ -39,7 +38,8 @@ class DocumentCrudController extends AbstractCrudController
 
         return [
             //FormField::addPanel('Informations importantes'),
-            TextField::new('titre')->onlyOnForms(),
+            AssociationField::new('dossier'),
+            TextField::new('titre')->hideOnIndex(),
             TextEditorField::new('description'),
             TextField::new('type')->onlyWhenCreating(),
             TextField::new('auteur')->onlyWhenCreating(),
@@ -57,8 +57,7 @@ class DocumentCrudController extends AbstractCrudController
 
             //FormField::addPanel('Autres informations'),
             DateField::new('publishedAt')->setLabel('Date de publication')->hideOnIndex(),
-            DateField::new('updatedAt')->setLabel('Dernière modification')->onlyOnIndex(),
-            AssociationField::new('dossier'),
+            DateField::new('updatedAt')->setLabel('Dernière modification')->hideOnForm(),
         ];
     }
 

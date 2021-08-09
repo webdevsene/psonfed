@@ -4,8 +4,9 @@
 
 {% block body %}
     <h1>Document</h1>
-
-    <table class="table">
+    <a href="{{ path('document_index') }}" class="btn btn-outline-primary">Retour sur la liste des documents</a>
+    
+    <table class="table table-light table-striped table-hover">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -46,9 +47,25 @@
         </tbody>
     </table>
 
-    <a href="{{ path('document_index') }}">back to list</a>
+    {# <article class="post">
+        <h2><a href="#">{{ document.titre }}</a></h2>
+        <p class="post_metadata">
+            {{ document.description }}
+        </p>
+        <p class="post-metadata">
+           <span class="metadata"><i class="fa fa-calendar"></i> {{ document.updatedAt | date('Y-m-d H:i:s') }}</span>
+           <span class="metadata"><i class="fa fa-calendar"></i> {{ document.CreatedAt | date('Y-m-d H:i:s') }}</span>
+        </p>
+        <h3>{{ document.dossier }}</h3>
+    </article> #}
 
-    <a href="{{ path('document_edit', {'id': document.id}) }}">edit</a>
 
-    {{ include('document/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+    
+        <a href="{{ path('document_edit', {'id': document.id}) }}">edit</a>
+
+        {{ include('document/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}
+
+

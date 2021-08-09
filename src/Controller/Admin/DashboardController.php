@@ -100,7 +100,7 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Documents', 'fa fa-file-text', Document::class)->setPermission('ROLE_ADMIN'),
 
             ]),
-            
+
             MenuItem::section('Paramètres'),
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class)->setPermission('ROLE_ADMIN'),
 
